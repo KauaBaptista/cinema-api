@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: Cinema
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/cinema?createDatabaseIfNotExist=true
+    username: ${Database_username}
+    password: ${Database_password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+server:
+  port: 8080
+
+jwt:
+  expiration: ${JWT-EXPIRATION}
+  key: ${JWT-KEY}

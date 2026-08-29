@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:9.7
+    container_name: sql
+    user: root
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - est_java:/var/lib/mysql
+volumes:
+  est_java:
