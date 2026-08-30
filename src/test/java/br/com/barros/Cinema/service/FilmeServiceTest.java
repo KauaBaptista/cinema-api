@@ -3,7 +3,7 @@ package br.com.barros.Cinema.service;
 import br.com.barros.Cinema.database.model.FilmeEntity;
 import br.com.barros.Cinema.database.repository.FilmeRepository;
 import br.com.barros.Cinema.dto.FilmeResponseDto;
-import br.com.barros.Cinema.exception.NotFoundExeption;
+import br.com.barros.Cinema.exception.NotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,6 +45,6 @@ public class FilmeServiceTest {
         Mockito.when(filmeRepository.findById(9999L))
                 .thenReturn(Optional.empty());
 
-        Assertions.assertThrows(NotFoundExeption.class, () -> filmeService.findById(9999L));
+        Assertions.assertThrows(NotFoundException.class, () -> filmeService.findById(9999L));
     }
 }

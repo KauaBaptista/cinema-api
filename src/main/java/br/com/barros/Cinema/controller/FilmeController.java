@@ -1,6 +1,5 @@
 package br.com.barros.Cinema.controller;
 
-import br.com.barros.Cinema.database.model.FilmeEntity;
 import br.com.barros.Cinema.dto.FilmeRequestDto;
 import br.com.barros.Cinema.dto.FilmeResponseDto;
 import br.com.barros.Cinema.service.FilmeService;
@@ -20,8 +19,11 @@ public class FilmeController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<FilmeResponseDto> findAll() {
-        return filmeService.findAll();
+    public List<FilmeResponseDto> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        return filmeService.findAll(page,size);
     }
 
     @GetMapping("/{id}")
@@ -32,7 +34,7 @@ public class FilmeController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public FilmeEntity save(@Valid @RequestBody FilmeRequestDto filmeRequestDto) {
+    public FilmeResponseDto save(@Valid @RequestBody FilmeRequestDto filmeRequestDto) {
         return filmeService.save(filmeRequestDto);
     }
 
@@ -44,7 +46,7 @@ public class FilmeController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public FilmeEntity update(@Valid @RequestBody FilmeRequestDto filmeRequestDto, @PathVariable Long id) {
+    public FilmeResponseDto update(@Valid @RequestBody FilmeRequestDto filmeRequestDto, @PathVariable Long id) {
         return filmeService.update(filmeRequestDto, id);
     }
 }

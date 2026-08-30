@@ -1,6 +1,5 @@
 package br.com.barros.Cinema.controller;
 
-import br.com.barros.Cinema.database.model.SessaoEntity;
 import br.com.barros.Cinema.dto.SessaoRequestDto;
 import br.com.barros.Cinema.dto.SessaoResponseDto;
 import br.com.barros.Cinema.service.SessaoService;
@@ -20,8 +19,11 @@ public class SessaoController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<SessaoResponseDto> findAll() {
-        return sessaoService.findAll();
+    public List<SessaoResponseDto> findAll(
+            @RequestParam (defaultValue = "0") int page,
+            @RequestParam (defaultValue = "5") int size
+    ) {
+        return sessaoService.findAll(page,size);
     }
 
     @GetMapping("/{id}")
@@ -32,7 +34,7 @@ public class SessaoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public SessaoEntity save(@Valid @RequestBody SessaoRequestDto sessaoRequestDto) {
+    public SessaoResponseDto save(@Valid @RequestBody SessaoRequestDto sessaoRequestDto) {
         return sessaoService.save(sessaoRequestDto);
     }
 

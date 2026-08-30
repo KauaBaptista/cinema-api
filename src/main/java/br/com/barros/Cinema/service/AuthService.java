@@ -9,9 +9,9 @@ import br.com.barros.Cinema.dto.LoginRequestDto;
 import br.com.barros.Cinema.dto.RegisterRequestDto;
 import br.com.barros.Cinema.dto.TokenResponseDto;
 import br.com.barros.Cinema.enums.RoleTypeEnum;
+import br.com.barros.Cinema.exception.ConflictException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -35,12 +35,12 @@ public class AuthService {
     private final TokenProvider tokenProvider;
 
     @Transactional
-    public String register(RegisterRequestDto registerRequestDto) throws BadRequestException {
+    public String register(RegisterRequestDto registerRequestDto) {
 
         UserEntity email = userRepository.findByEmail(registerRequestDto.email())
                 .orElse(null);
         if (email != null) {
-            throw new BadRequestException("Usuário ja cadastrado");
+            throw new ConflictException("Usuário ja cadastrado");
         }
 
         RoleEntity roles = roleRepository.findByNome(RoleTypeEnum.ROLE_USER.name())

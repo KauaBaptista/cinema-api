@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public record SessaoRequestDto(
@@ -14,6 +15,7 @@ public record SessaoRequestDto(
         Integer sala,
         @NotNull
         @Positive
-        Double preco,
+        BigDecimal preco,
+        @NotNull
         Long filmeId
 ) {}

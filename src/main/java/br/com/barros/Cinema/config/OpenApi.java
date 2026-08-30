@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
         info = @Info(
                 title = "Cinema API",
                 version = "1.0",
-                description = "API RESTful para gerênciamento de cinema, filmes e sessões."
+                description = "API RESTful para gerenciamento de cinema, filmes e sessões."
         ),
         security = @SecurityRequirement(name = "bearerAuth")
 )

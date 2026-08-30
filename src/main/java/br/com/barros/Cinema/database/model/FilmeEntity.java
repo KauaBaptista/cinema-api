@@ -35,6 +35,6 @@ public class FilmeEntity {
     @Column
     private String produtora;
 
-    @OneToMany(mappedBy = "filmeId", cascade = CascadeType.ALL)
-    private List<SessaoEntity> sessoesId =  new ArrayList<>();
+    @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL)
+    private List<SessaoEntity> sessoes =  new ArrayList<>();
 }

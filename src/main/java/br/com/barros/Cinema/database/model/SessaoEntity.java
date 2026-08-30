@@ -3,6 +3,7 @@ package br.com.barros.Cinema.database.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,11 +21,11 @@ public class SessaoEntity {
     @Column
     private LocalDateTime hora;
     @Column
-    private Double preco;
+    private BigDecimal preco;
     @Column
     private Integer sala;
 
     @ManyToOne
     @JoinColumn(name = "filme_id")
-    private FilmeEntity filmeId;
+    private FilmeEntity filme;
 }

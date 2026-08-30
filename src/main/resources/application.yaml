@@ -18,5 +18,9 @@ server:
   port: 8080
 
 jwt:
-  expiration: ${JWT-EXPIRATION}
-  key: ${JWT-KEY}
+  expiration: ${JWT_EXPIRATION}
+  key: ${JWT_KEY}
+
+admin:
+  email: ${ADMIN_EMAIL}
+  password: ${ADMIN_PASSWORD}

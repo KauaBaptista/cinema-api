@@ -6,7 +6,7 @@ import br.com.barros.Cinema.database.repository.FilmeRepository;
 import br.com.barros.Cinema.database.repository.SessaoRepository;
 import br.com.barros.Cinema.dto.SessaoRequestDto;
 import br.com.barros.Cinema.dto.SessaoResponseDto;
-import br.com.barros.Cinema.exception.NotFoundExeption;
+import br.com.barros.Cinema.exception.NotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -52,7 +52,7 @@ public class SessaoServiceTest {
     @DisplayName("Deve lançar exceção ao buscar sessão com ID inexistente")
     void findById_NaoEncontrado() {
         Mockito.when(sessaoRepository.findById(9999L)).thenReturn(Optional.empty());
-        Assertions.assertThrows(NotFoundExeption.class, () -> sessaoService.findById(9999L));
+        Assertions.assertThrows(NotFoundException.class, () -> sessaoService.findById(9999L));
     }
 
     @Test
@@ -61,6 +61,6 @@ public class SessaoServiceTest {
         SessaoRequestDto requestDto = new SessaoRequestDto(LocalDateTime.now(), 1, 10.0, 9999L);
 
         Mockito.when(filmeRepository.findById(9999L)).thenReturn(Optional.empty());
-        Assertions.assertThrows(NotFoundExeption.class, () -> sessaoService.save(requestDto));
+        Assertions.assertThrows(NotFoundException.class, () -> sessaoService.save(requestDto));
     }
 }

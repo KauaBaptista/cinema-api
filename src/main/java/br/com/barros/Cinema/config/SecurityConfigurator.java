@@ -22,7 +22,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfigurator {
 
-    private final JwtAuthentificationFilter jwtAuthenticationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
@@ -50,6 +50,7 @@ public class SecurityConfigurator {
                         .requestMatchers(HttpMethod.POST, "/filmes/**", "/sessoes/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/filmes/**", "/sessoes/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/filmes/**", "/sessoes/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/usuarios/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
